@@ -69,8 +69,10 @@ def register(data):
                            "password": pwh, "messages": [], "chats": [],
                            "pixmap": "", "publickey": "", "groups": []})
 
-    if len(db.db["users"]) == 0:
-        db.db["users"][data["username"]]["rank"] = "Administrator"
+    if len(db.db["users"]) == 1:
+        for u in db.db["users"]:
+            if u["username"] == data["username"]:
+                u["rank"] = "Administrator"
 
     db.sync()
 
