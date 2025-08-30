@@ -69,6 +69,9 @@ def register(data):
                            "password": pwh, "messages": [], "chats": [],
                            "pixmap": "", "publickey": "", "groups": []})
 
+    if len(db.db["users"]) == 0:
+        db.db["users"][data["username"]]["rank"] = "Administrator"
+
     db.sync()
 
     return jsonify({"msg": "Success"}), 201
